@@ -10,6 +10,7 @@ public class Dev {
     private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
 
+
     public void inscreverBootcamp(Bootcamp bootcamp){
         this.conteudosInscritos.addAll(bootcamp.getConteudos());
         bootcamp.getDevsInscritos().add(this);
@@ -30,6 +31,22 @@ public class Dev {
                 .stream()
                 .mapToDouble(Conteudo::calcularXp)
                 .sum();
+    }
+
+    public void imprimirInfoDev(){
+        System.out.println("Nome: " + getNome());
+        System.out.println("XP: " + calcularTotalXp());
+        int level = (int) calcularTotalXp()/100;
+        System.out.println("Level: " + level);
+        System.out.println("Conteudos inscritos: ");
+        for (Conteudo i: conteudosInscritos){
+            System.out.println(i);
+        }
+        System.out.println("Conteudos concluidos: ");
+        for (Conteudo i2: conteudosConcluidos){
+            System.out.println(i2);
+        }
+
     }
 
 
@@ -56,6 +73,7 @@ public class Dev {
     public void setConteudosConcluidos(Set<Conteudo> conteudosConcluidos) {
         this.conteudosConcluidos = conteudosConcluidos;
     }
+    
 
     @Override
     public boolean equals(Object o) {
